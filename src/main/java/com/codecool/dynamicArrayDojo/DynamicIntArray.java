@@ -89,4 +89,8 @@ public class DynamicIntArray {
         }
         return sb.toString();
     }
+
+    public int size() {
+        return this.size;
+    }
 }
