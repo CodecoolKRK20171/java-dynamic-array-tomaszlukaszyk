@@ -59,6 +59,37 @@ class DynamicIntArrayTest {
         assertEquals(result, array.toString());
     }
 
+    @Test
+    void testSizeIsCorrectAfterAdd() {
+        DynamicIntArray array = createArray(3);
+        array.add(4);
+
+        assertEquals(4, array.size());
+    }
+
+    @Test
+    void testSizeIsCorrectAfterRemove() {
+        DynamicIntArray array = createArray(11);
+        array.remove(10);
+
+        assertEquals(10, array.size());
+    }
+
+    @Test
+    void testSizeIsCorrectAfterInsert() {
+        DynamicIntArray array = createArray(11);
+        array.insert(8, 223);
+
+        assertEquals(12, array.size());
+    }
+
+    @Test
+    void testSizeIsCorrectForEmpty() {
+        DynamicIntArray array = new DynamicIntArray();
+
+        assertEquals(0, array.size());
+    }
+
     private DynamicIntArray createArray(int numOfElements) {
         DynamicIntArray array = new DynamicIntArray();
         for (int i = 0; i < numOfElements; ++i)
