@@ -1,7 +1,5 @@
 package com.codecool.dynamicArrayDojo;
 
-import java.util.Arrays;
-
 // put your code here!
 public class DynamicIntArray {
 
@@ -27,8 +25,19 @@ public class DynamicIntArray {
     private void increaseSize() {
         this.size++;
         if (this.array.length < this.size) {
-            this.array = Arrays.copyOf(array, this.size + INITIAL_SIZE);
+            resizeArray(this.size + INITIAL_SIZE);
         }
+    }
+
+    private void resizeArray(int newSize) {
+        int[] newArray = new int[newSize];
+        int minSize = Math.min(newSize, this.array.length);
+
+        for (int i = 0; i<minSize; i++) {
+            newArray[i] = this.array[i];
+        }
+
+        this.array = newArray;
     }
 
     public void remove(int element) {
@@ -52,7 +61,7 @@ public class DynamicIntArray {
     private void decreaseSize() {
         this.size--;
         if (this.array.length > this.size + INITIAL_SIZE) {
-            this.array = Arrays.copyOf(array, array.length - INITIAL_SIZE);
+            resizeArray(array.length - INITIAL_SIZE);
         }
     }
 
