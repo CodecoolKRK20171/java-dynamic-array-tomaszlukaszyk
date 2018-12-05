@@ -31,7 +31,6 @@ public class MyQueue<T> {
     public void enqueue(T data) {
         this.size++;
         Node<T> newNode = new Node<>(data);
-        newNode.setNext(null);
 
         if (this.first == null) {
             this.first = this.last = newNode;

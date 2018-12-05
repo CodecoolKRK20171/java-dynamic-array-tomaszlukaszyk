@@ -45,7 +45,6 @@ public class SinglyLinkedList<T> implements Iterable<T> {
     public void add(T data) {
         this.length++;
         Node<T> newNode = new Node<>(data);
-        newNode.setNext(null);
 
         if (this.head == null) {
             this.head = this.last = newNode;
