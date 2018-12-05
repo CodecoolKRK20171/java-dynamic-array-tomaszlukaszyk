@@ -224,6 +224,18 @@ class SinglyLinkedListTest {
         assertEquals(-1, list.indexOf(1));
     }
 
+    @Test
+    void testIterator() {
+        Integer[] array = {1, 3, 8, 4};
+        fillFromArray(array);
+
+        int i = 0;
+        for (Integer integer : list) {
+            assertEquals(array[i++], integer);
+        }
+        assertEquals(3, i);
+    }
+
     private void fillFromArray(Integer[] array) {
         for (Integer element: array) {
             list.add(element);
