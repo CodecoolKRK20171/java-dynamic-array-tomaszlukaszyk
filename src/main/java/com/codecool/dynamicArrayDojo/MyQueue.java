@@ -24,6 +24,10 @@ public class MyQueue<T> {
         return this.size;
     }
 
+    public boolean isEmpty() {
+        return this.size == 0;
+    }
+
     public void enqueue(T data) {
         this.size++;
         Node<T> newNode = new Node<>(data);

@@ -67,6 +67,7 @@ class MyQueueTest {
 
     @Test
     void testLastThrowsExceptionWithEmptyQueue() {
+        assertTrue(queue.isEmpty());
         assertThrows(NoSuchElementException.class, () -> queue.last());
     }
 
