@@ -1,8 +1,9 @@
 package com.codecool.dynamicArrayDojo;
 
+import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class SinglyLinkedList<T> {
+public class SinglyLinkedList<T> implements Iterable<T> {
 
     private Node<T> head;
     private Node<T> last;
@@ -149,5 +150,31 @@ public class SinglyLinkedList<T> {
             current = current.getNext();
         }
         return sb.toString();
+    }
+
+    @Override
+    public Iterator<T> iterator() {
+        return new SinglyLinkedListIterator();
+    }
+
+    private class SinglyLinkedListIterator implements Iterator<T> {
+
+        private Node<T> current;
+
+        public SinglyLinkedListIterator() {
+            this.current = SinglyLinkedList.this.head;
+        }
+
+        @Override
+        public boolean hasNext() {
+            return current.getNext() != null;
+        }
+
+        @Override
+        public T next() {
+            T currentData = current.getData();
+            current = current.getNext();
+            return currentData;
+        }
     }
 }
