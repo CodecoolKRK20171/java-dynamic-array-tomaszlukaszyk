@@ -71,9 +71,60 @@ class MyQueueTest {
         assertThrows(NoSuchElementException.class, () -> queue.last());
     }
 
+    @Test
+    void testEnqueueWithPriorityInMiddle() {
+        Integer[] data = {2, 1, 1, 0, 0, 0};
+        fillFromArrayWithPriority(data);
+        queue.enqueue(3, 1);
+        Integer[] expected = {2, 1, 1, 3, 0, 0, 0};
+
+        assertEquals(7, queue.size());
+        assertEquals(expected[0], queue.peek());
+        assertEquals(expected[expected.length-1], queue.last());
+        for (Integer element: expected) {
+            assertEquals(element, queue.dequeue());
+        }
+    }
+
+    @Test
+    void testEnqueueWithPriorityAsFirst() {
+        Integer[] data = {2, 1, 1, 0, 0, 0};
+        fillFromArrayWithPriority(data);
+        queue.enqueue(3, 3);
+        Integer[] expected = {3, 2, 1, 1, 0, 0, 0};
+
+        assertEquals(7, queue.size());
+        assertEquals(expected[0], queue.peek());
+        assertEquals(expected[expected.length-1], queue.last());
+        for (Integer element: expected) {
+            assertEquals(element, queue.dequeue());
+        }
+    }
+
+    @Test
+    void testEnqueueWithPriorityAsLast() {
+        Integer[] data = {2, 1, 1, 0, 0, 0};
+        fillFromArrayWithPriority(data);
+        queue.enqueue(3, 0);
+        Integer[] expected = {2, 1, 1, 0, 0, 0, 3};
+
+        assertEquals(7, queue.size());
+        assertEquals(expected[0], queue.peek());
+        assertEquals(expected[expected.length-1], queue.last());
+        for (Integer element: expected) {
+            assertEquals(element, queue.dequeue());
+        }
+    }
+
     private void fillFromArray(Integer[] array) {
         for (Integer element: array) {
             queue.enqueue(element);
+        }
+    }
+
+    private void fillFromArrayWithPriority(Integer[] array) {
+        for (Integer element: array) {
+            queue.enqueue(element, element);
         }
     }
 

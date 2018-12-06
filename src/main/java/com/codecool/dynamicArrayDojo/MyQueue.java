@@ -40,6 +40,39 @@ public class MyQueue<T> {
         }
     }
 
+    public void enqueue(T data, int priority) {
+        this.size++;
+        Node<T> newNode = new Node<>(data);
+        newNode.setPriority(priority);
+
+        if (this.first == null) {
+            this.first = this.last = newNode;
+        } else {
+            Node<T> previous = getLastWithPriority(priority);
+
+            if (previous == null) {
+                newNode.setNext(this.first);
+                this.first = newNode;
+                return;
+            }
+
+            newNode.setNext(previous.getNext());
+            previous.setNext(newNode);
+
+            if (previous == this.last) this.last = newNode;
+        }
+    }
+
+    private Node<T> getLastWithPriority(int priority) {
+        Node<T> current = this.first;
+        while (current.getNext() != null && current.getNext().getPriority() >= priority) {
+            current = current.getNext();
+        }
+
+        if (current.getPriority() < priority) return null;
+        return current;
+    }
+
     public T peek() {
         if (this.size <= 0) return null;
 
