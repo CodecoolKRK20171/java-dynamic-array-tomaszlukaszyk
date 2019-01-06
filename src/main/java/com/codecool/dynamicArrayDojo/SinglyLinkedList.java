@@ -88,6 +88,7 @@ public class SinglyLinkedList<T> implements Iterable<T> {
                 if (this.last == current) {
                     last = previous;
                 }
+                break;
             }
             previous = current;
             current = previous.getNext();
