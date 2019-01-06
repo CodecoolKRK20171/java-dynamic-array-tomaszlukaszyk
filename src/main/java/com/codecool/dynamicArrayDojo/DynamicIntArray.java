@@ -6,7 +6,7 @@ public class DynamicIntArray {
     private final int INITIAL_SIZE = 10;
 
     private int[] array;
-    private int size;
+    private int size = 0;
 
     public DynamicIntArray() {
         this.array = new int[INITIAL_SIZE];
@@ -14,7 +14,6 @@ public class DynamicIntArray {
 
     public DynamicIntArray(int size) {
         this.array = new int[size];
-        this.size = size;
     }
 
     public void add(int element) {
