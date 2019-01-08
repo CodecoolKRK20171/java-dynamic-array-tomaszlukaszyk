@@ -59,7 +59,7 @@ public class HashTable<K, V> {
         if (currentList != null) {
             for (KeyValue<K, V> kv: currentList) {
                 if (kv.getKey().equals(key)) {
-                    currentList.remove();
+                    currentList.remove(kv);
                     this.size--;
                     return;
                 }
